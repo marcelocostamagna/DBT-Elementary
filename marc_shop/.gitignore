@@ -6,7 +6,8 @@ env
 target/
 dbt_packages/
 logs/
-profiles.yml
+# Uncomment for real development
+#profiles.yml
 
 .DS_Store
 

@@ -10,7 +10,7 @@ marc_shop:
       pass: postgres
       port: 5432
       threads: 1
-    
+
     prod:
       type: postgres
       schema: marc-house

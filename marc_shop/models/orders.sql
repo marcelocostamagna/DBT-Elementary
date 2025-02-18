@@ -16,16 +16,13 @@ order_payments as (
 
     select
         order_id,
-
-        {% for payment_method in payment_methods -%}
-        sum(case when payment_method = '{{ payment_method }}' then amount else 0 end) as {{ payment_method }}_amount,
+        {% for payment_method in payment_methods -%} -- noqa: LT02
+                sum(case when payment_method = '{{ payment_method }}' then amount else 0 end) as {{ payment_method }}_amount, -- noqa
         {% endfor -%}
-
         sum(amount) as total_amount
 
     from payments
-
-    group by order_id
+    group by order_id  -- noqa
 
 ),
 
@@ -38,9 +35,7 @@ final as (
         orders.status,
 
         {% for payment_method in payment_methods -%}
-
-        order_payments.{{ payment_method }}_amount,
-
+            order_payments.{{ payment_method }}_amount,
         {% endfor -%}
 
         order_payments.total_amount as amount
