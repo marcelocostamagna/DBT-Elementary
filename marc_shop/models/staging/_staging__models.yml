@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: status
+        tests:
+          # - accepted_values:
+          #     values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+          - is_not_null
+              
+  - name: stg_payments
+    columns:
+      - name: payment_id
+        tests:
+          - unique
+              # config:
+              #       store_failures: true
+          - not_null
+      - name: order_id
+      - name: payment_method
+        tests:
+          - accepted_values:
+              name: mc_accepted_val
+              values: ['credit_card', 'coupon', 'bank_transfer'] #, 'gift_card']
+              # values: ['credit_card', 'coupon', 'gift_card'] # , 'bank_transfer'
+              # config:
+              #   store_failures: false
+      - name: amount

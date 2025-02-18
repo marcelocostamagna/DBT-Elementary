@@ -1,0 +1,22 @@
+marc_shop:
+  target: dev  # this is the default target
+  outputs:
+    dev:
+      type: postgres
+      schema: marc-house
+      host: localhost
+      dbname: db
+      user: postgres
+      pass: postgres
+      port: 5432
+      threads: 1
+    
+    prod:
+      type: postgres
+      schema: marc-house
+      host: localhost
+      dbname: db
+      user: postgres
+      pass: postgres
+      port: 5432
+      threads: 1
